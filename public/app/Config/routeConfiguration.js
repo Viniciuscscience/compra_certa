@@ -1,19 +1,18 @@
 app.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider.
-                when('/', {
-                    title: 'home',
-                    templateUrl: 'app/Views/home.html',
-                    controller: 'loginCtrl'
-                })
-
+        $routeProvider
+            .when('/error',{
+                title: 'ERRO',
+                templateUrl: 'app/Views/error.html',
+                controller: 'homeCtrl'
+            })
                 .when('/home', {
                     title: 'HOME',
                     templateUrl: 'app/Views/home.html',
                     controller: 'homeCtrl'
                 })
                 .otherwise({
-                    redirectTo: '/'
+                    redirectTo: '/error'
                 });
     }]);
 
