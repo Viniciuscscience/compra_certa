@@ -6,7 +6,7 @@ class API extends REST
 {
 
 }
-// Initiiate Library
+// Instancia API
 
 $api = new API;
 $api->processApi();
