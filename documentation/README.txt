@@ -1,0 +1,6 @@
+NESTA PASTA DEVEM IR TODA A DOCUMENTAÇÃO FINAL DO PROJETO. AO SE GERAR UMA NOVA VERSÃO DE UM DOCUMENTO, DEVE-SE SUBSTITUIR A VERSÃO ANTERIOR.
+SOMENTE ADICIONEI UMA NOVA VERSÃO DE DOCUMENTO APÓS A APROVAÇÃO DE TODOS OS INTEGRANTES DO GRUPO.
+
+//um dedo será cortado para cada versão de documento atualizada sem comunicar com o resto do grupo '-'
+
+att, Vinícius Silva Santos
