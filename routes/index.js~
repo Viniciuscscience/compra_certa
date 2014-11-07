@@ -14,14 +14,13 @@ console.log('O PRODUTO PESQUISADO NO BUSCAPE FOI: %s',product);
 
     
 
-    var url = format('http://www.buscape.com.br/smartphone-apple-iphone-5s-16gb-desbloqueado.html?pos=1#precos');
+    var url = format('http://www.buscape.com.br/smartphone-samsung-galaxy-s4-mini-gt-i9192-desbloqueado.html?pos=1#precos');
 
 
     request(url, function (err, response, body) {
         if (err) throw err;
         var $ = cheerio.load(body);
 	console.log("oi");
-
         $(".bp-product-list .product").each(
 	function(){
 		var preco = $(this).children('.details').children('a').data('preco');
