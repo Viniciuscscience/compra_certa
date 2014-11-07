@@ -7,14 +7,14 @@ app.config(['$routeProvider',
                 controller: 'homeCtrl'
             })
                 .when('/home', {
-                    title: 'HOME',
+                    title: 'COMPRA CERTA',
                     templateUrl: 'app/Views/home.html',
                     controller: 'homeCtrl'
                 })
-                .when('/productlist', {
-                	title: 'LISTA',
-                	templateUrl: 'app/Views/productlist.html',
-                	controller: 'productlistCtrl'
+                .when('/lojas', {
+                	title: 'LISTA DE LOJAS',
+                	templateUrl: 'app/Views/storelist.html',
+                	controller: 'storelistCtrl'
                 })	
                 .otherwise({
                     redirectTo: '/home'

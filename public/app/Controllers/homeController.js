@@ -1,10 +1,15 @@
 
-app.controller('homeCtrl', function($scope,services, $location, $rootScope) {
+app.controller('homeCtrl', function($scope,produto, $location, $rootScope) {
 	$scope.productname = "";
     $scope.searchproduct = function (pname) 
     {
-    	$rootScope.productlist = services.getProductList(pname);
-    	$location.path("/productlist");
+        $rootScope.storelist = [];
+        $rootScope.isworking = true;
+    	produto.getStoreList(pname).then(function(slist){
+            $rootScope.storelist = slist.data
+            $rootScope.isworking = false;
+        });
+    	$location.path("/lojas");
     };
     
     
