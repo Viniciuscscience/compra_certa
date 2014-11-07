@@ -1,6 +1,11 @@
 
-app.controller('homeCtrl', function($scope) {
-
-    $scope.mensagem_generica = "ESTA MENSAGEM EH GENERICA";
-    $scope.mensagem_erro = "ESTA PAGINA NAO EXISTE!";
+app.controller('homeCtrl', function($scope,services, $location, $rootScope) {
+	$scope.productname = "";
+    $scope.searchproduct = function (pname) 
+    {
+    	$rootScope.productlist = services.getProductList(pname);
+    	$location.path("/productlist");
+    };
+    
+    
 });

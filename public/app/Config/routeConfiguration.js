@@ -11,8 +11,13 @@ app.config(['$routeProvider',
                     templateUrl: 'app/Views/home.html',
                     controller: 'homeCtrl'
                 })
+                .when('/productlist', {
+                	title: 'LISTA',
+                	templateUrl: 'app/Views/productlist.html',
+                	controller: 'productlistCtrl'
+                })	
                 .otherwise({
-                    redirectTo: '/error'
+                    redirectTo: '/home'
                 });
     }]);
 
