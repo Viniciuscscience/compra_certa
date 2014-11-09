@@ -1,0 +1,14 @@
+{
+    		{	
+    			name:   "Iphone", 
+    		 	price:  2000
+    		},
+    		{
+    			name:   "Ps4",
+    			price:  4000
+    		},
+    		{
+    			name:   "Oculus Rift",
+    			price:  3000
+    		}
+    	}
