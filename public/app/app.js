@@ -1,7 +1,7 @@
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', [
+    'ngRoute',
+    'ngCookies'
+]);
 
-app.run(['$location', '$rootScope', function($location, $rootScope) {
-        $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-            $rootScope.title = current.$$route.title;
-        });
-    }]);
+app.run(['$location', '$rootScope', function ($location, $rootScope) {
+}]);

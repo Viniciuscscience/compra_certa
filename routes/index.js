@@ -19,7 +19,7 @@ router.get('/produto/:name', function (req, res) {
             var $ = cheerio.load(body);
 
             var first_product = $(".bp-product-list .product").first().children('.details').children('.description').children('a').attr('href');
-            if(first_product == undefined)
+            if (first_product == undefined)
                 first_product = "none";
             request(first_product, function (err2, response2, body2) {
                     if (!err2 && response2.statusCode == 200) {
@@ -27,15 +27,26 @@ router.get('/produto/:name', function (req, res) {
                         $(".bp-product-list .product").each(
                             function () {
                                 var _price = $(this).children('.details').children('a').data('preco');
-                                var _store = $(this).children('.details').children('a').attr('title');
+                                var _store = $(this).children('.details').children('a').children('img').attr('alt');
+                                var _image = $(this).children('.details').children('a').children('img').attr('src');
+                                var _starfull = $(this).find('.ebit-more-info div.stars span.starfull').length;
+                                var _starhalf = $(this).find('.ebit-more-info div.stars span.starhalf').length;
+                                var _star = _starfull + _starhalf / 2;
+                                var _description = $(this).children('.description').first().text();
                                 var _link = $(this).children('.actions').children('.red').attr('href');
-                                store_list.push({store: _store, price: _price, link: _link});
+                                store_list.push({
+                                    store: _store,
+                                    price: _price,
+                                    link: _link,
+                                    image: _image,
+                                    description: _description,
+                                    star: _star
+                                });
 
                             }
                         );
                         res.json(store_list);
-                        console.log(store_list);
-                    }else{
+                    } else {
                         res.json(store_list);
 
                     }
@@ -44,16 +55,6 @@ router.get('/produto/:name', function (req, res) {
             )
             ;
         }
-
-        /*
-         $(".bp-product-list .product").each(
-         function(){
-         var preco = $(this).children('.details').children('a').data('preco');
-         var loja = $(this).children('.details').children('a').attr('title');
-         console.log("Loja: " + loja + ", o preço é: " + preco);
-         }
-         );
-         */
 
     });
 

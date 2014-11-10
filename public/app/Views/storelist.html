@@ -1,15 +1,33 @@
-<div ng-show="isworking">ESTAMOS PESQUISANDO SEU PRODUTO EM DIVERSAS LOJAS...</div>
-<div ng-repeat="store in storelist" ng-show="storelist">
-  <div ng-hide="store.price < 0"> {{store.store}} {{store.price}}
-    <button ng-click="deleteStore(store.store)" type="button">Remover</button>
-    <button ng-click="buyProduct(store.link)" type="button">Comprar</button>
-  </div>
-</br> 
+AS ULTIMAS PESQUISAS FORAM: </br>
+<div ng-repeat="pname in productsinCookies">
+    {{pname}}</br>
 </div>
 
-<div ng-hide="isworking || storelist" >
+
+filtro: <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters">
+    <option value="">Escolha um filtro</option>
+</select>
+</br>
+<div ng-show="isworking">ESTAMOS PESQUISANDO SEU PRODUTO EM DIVERSAS LOJAS...</div>
+<div ng-show="storelist">ESTA É A LISTA DAS LOJAS PARA COMPRAR O PRODUTO: </br>
+
+    <div ng-repeat="store in storelist | orderBy: choosedFilter">
+        <div ng-hide="store.price < 0"> {{store.store}} - {{store.price | currency: 'R$'}} - <img src="{{store.image}}">
+            - {{store.description}} - {{store.star}}
+            <button ng-click="deleteStore(store.store)" type="button">Remover</button>
+            <button ng-click="buyProduct(store.link)" type="button">Comprar</button>
+        </div>
+        </br>
+    </div>
+</div>
+
+<div ng-hide="isworking || storelist">
 
     Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
     1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
     2 - Não foi encontrado nenhum produto com este nome.</br>
 </div>
+
+
+
+
