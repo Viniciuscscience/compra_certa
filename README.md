@@ -9,9 +9,12 @@ ser a feature principal, existem diversas outras features que estão em processo
 
 Para rodar este projeto você precisará instalar:
 
-Nodejs - http://nodejs.org/  - É o servidor da aplicação
-Curl - http://curl.haxx.se/ -  Utilizado para gerenciar algumas transferencias de dados http
+Nodejs - http://nodejs.org/  - É o servidor da aplicação.
+
+Curl - http://curl.haxx.se/ -  Utilizado para gerenciar algumas transferencias de dados http.
+
 Npm - https://www.npmjs.org/ - É um gerenciador de dependencias, geralmente vem junto com o Nodejs.
+
 
 Existem diversas outras dependencias, mas todas estão atreladas ao Npm, para que o processo de configuração do ambiente
 seja minimizado.
