@@ -26,7 +26,7 @@ sudo npm install
 todas as demais pendencias do projeto serão instaladas
 
 então rode o comando: 
-sudo node start
+sudo npm start
 
 o servidor irá subir na porta 3000 , caso a porta esteja ocupada ele procurará outra porta e te informará.
 
