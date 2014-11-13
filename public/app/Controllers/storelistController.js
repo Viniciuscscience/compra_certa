@@ -11,9 +11,24 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     ];
     $scope.deleteStore = function (name) {
         $rootScope.storelist.forEach(function (_store) {
-            if (_store.store == name)
+            if (_store.store == name )
                 _store.price = -1;
         });
+    };
+    $scope.deleteProduct = function (name, price, descr) {
+    	 var index = 0;
+    	 for ( index = 0; index < $rootScope.storelist.length; index++) {
+         	if ( $rootScope.storelist[index].store == name && 
+         	     $rootScope.storelist[index].price == price && 
+         	     $rootScope.storelist[index].description == descr ) {
+         			
+         			break;
+         	}
+         }       
+         console.log("index is " + index);
+         if (index < $rootScope.storelist.length) {
+    		$rootScope.storelist.splice(index,1);
+    	 }
     };
     $scope.buyProduct = function (website) {
         $window.open(website);

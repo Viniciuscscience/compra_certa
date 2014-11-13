@@ -14,7 +14,7 @@ filtro: <select ng-model="choosedFilter" ng-options="filter.value as filter.name
     <div ng-repeat="store in storelist | orderBy: choosedFilter">
         <div ng-hide="store.price < 0"> {{store.store}} - {{store.price | currency: 'R$'}} - <img src="{{store.image}}">
             - {{store.description}} - {{store.star}}
-            <button ng-click="deleteStore(store.store)" type="button">Remover</button>
+            <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button">Remover</button>
             <button ng-click="buyProduct(store.link)" type="button">Comprar</button>
         </div>
         </br>
