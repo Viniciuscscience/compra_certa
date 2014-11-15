@@ -1,10 +1,11 @@
 app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $cookieStore) {
-    $rootScope.productname = "";
-    $scope.searchproduct = function (pname) {
+    $scope.productname = "";
+    $rootScope.searchproduct = function (pname) {
+        $rootScope.globalname = pname;
         $rootScope.storelist = [];
         $rootScope.isworking = true;
         var thereIsCookie = false;
-
+        console.log($rootScope.productname);
         $rootScope.productsinCookies = $cookieStore.get('researched_compracerta');
         
         if ($rootScope.productsinCookies == undefined)

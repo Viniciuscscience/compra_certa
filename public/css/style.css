@@ -71,15 +71,15 @@
 .img-prod {
 	display: inline;
 	float: left;
-	width: 15%;
+	width: 18%;
 }
 
 .botao-prod {
 	display: block;
-	position: relative;
-	margin-left: 80px;
-	float: left;
-	width: 10%;
+	position: absolute;
+	margin-left: 635px;
+	float: right;
+	width: 3%;
 }
 
 .produto {

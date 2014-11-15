@@ -4,11 +4,11 @@
             <a href="#/home" class="navbar-brand">Compra Certa</a>
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
-            <form role="search" method="GET" action="lista.html" class="navbar-form navbar-left">
+            <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" style="width:700px" placeholder="Digite o nome do produto, marca ou modelo e clique em pesquisar" class="form-control" required>
+                    <input ng-model="productname" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-warning">Pesquisar</button>
+                <button ng-click="searchproduct(productname)" type="submit" class="btn btn-warning">Pesquisar</button>
             </form>
             
         </div>
@@ -34,7 +34,7 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Resultados para "{{productname}}" 
+                <div class="panel-heading">Resultados para "{{globalname}}" 
                     <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters" class="selecao">
                         <option value="">Ordenar por:</option>
                     </select>
@@ -47,6 +47,7 @@
                         2 - Não foi encontrado nenhum produto com este nome.</br>
                     </div>
                     <div ng-repeat="store in storelist | orderBy: choosedFilter" class="produto">
+                    </br><hr></br>
                         <div ng-hide="store.price < 0"> 
 
 
@@ -54,20 +55,22 @@
                             <img src="{{store.image}}">
                         </div>
                         <div class="desc-prod">
-                            <p>{{store.store}} <!-- - {{store.description}}--> - {{store.star}}</p>
+                            <p>{{store.store}} <!-- - {{store.description}}--></p>
+                            <img src="img/{{'star'+store.star}}.png">
                         </div>
                         <div class="preco-prod">
-                            <p>{{store.price}}</p>
+                            <p>{{store.price | currency: 'R$'}}</p>
                         </div>
                         <div class="botao-prod">
-                            <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
+                            <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir para loja</button>
                             <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Remover</button>
                         </div></br>
                         </div>
                         
                     </div>
+
                     </br></br></br></br></br>
-                    <hr ng-show="storelist">
+                    
                 </div>
 
 
