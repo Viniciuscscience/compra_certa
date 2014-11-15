@@ -1,14 +1,18 @@
 app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $cookieStore) {
-    $scope.productname = "";
+    $rootScope.productname = "";
     $scope.searchproduct = function (pname) {
         $rootScope.storelist = [];
         $rootScope.isworking = true;
         var thereIsCookie = false;
 
         $rootScope.productsinCookies = $cookieStore.get('researched_compracerta');
-        console.log($rootScope.productsinCookies);
+        
         if ($rootScope.productsinCookies == undefined)
             $rootScope.productsinCookies = [];
+
+        while ($rootScope.productsinCookies.length > 7) {
+            $rootScope.productsinCookies.splice(0,1);
+        };
 
         $rootScope.productsinCookies.forEach(function (n) {
             if (n == pname) {

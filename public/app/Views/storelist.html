@@ -1,3 +1,82 @@
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">          
+        <div class="navbar-header">
+            <a href="#/home" class="navbar-brand">Compra Certa</a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <form role="search" method="GET" action="lista.html" class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" style="width:700px" placeholder="Digite o nome do produto, marca ou modelo e clique em pesquisar" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-warning">Pesquisar</button>
+            </form>
+            
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-md-4">
+        <div class="superior">
+            <div class="panel panel-default">
+                <div class="panel-heading">Ultimas pesquisas </div>
+                <div class="panel-body">
+                    <div ng-repeat="pname in productsinCookies">
+                        {{pname}}</br><hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="superior">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Resultados para "{{productname}}" 
+                    <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters" class="selecao">
+                        <option value="">Ordenar por:</option>
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <div ng-show="isworking" class="img-center"><img src="img/ajax-loader.gif"></div>
+                    <div ng-hide="isworking || storelist">
+                        Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
+                        1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
+                        2 - Não foi encontrado nenhum produto com este nome.</br>
+                    </div>
+                    <div ng-repeat="store in storelist | orderBy: choosedFilter" class="produto">
+                        <div ng-hide="store.price < 0"> 
+
+
+                        <div class="img-prod">
+                            <img src="{{store.image}}">
+                        </div>
+                        <div class="desc-prod">
+                            <p>{{store.store}} <!-- - {{store.description}}--> - {{store.star}}</p>
+                        </div>
+                        <div class="preco-prod">
+                            <p>{{store.price}}</p>
+                        </div>
+                        <div class="botao-prod">
+                            <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
+                            <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Remover</button>
+                        </div></br>
+                        </div>
+                        
+                    </div>
+                    </br></br></br></br></br>
+                    <hr ng-show="storelist">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 AS ULTIMAS PESQUISAS FORAM: </br>
 <div ng-repeat="pname in productsinCookies">
     {{pname}}</br>
@@ -19,14 +98,9 @@ filtro: <select ng-model="choosedFilter" ng-options="filter.value as filter.name
         </div>
         </br>
     </div>
-</div>
+</div>-->
 
-<div ng-hide="isworking || storelist">
 
-    Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
-    1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
-    2 - Não foi encontrado nenhum produto com este nome.</br>
-</div>
 
 
 
