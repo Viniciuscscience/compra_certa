@@ -46,30 +46,29 @@
                         1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
                         2 - Não foi encontrado nenhum produto com este nome.</br>
                     </div>
-                    <div ng-repeat="store in storelist | orderBy: choosedFilter" class="produto">
+                        <div ng-repeat="store in storelist | orderBy: choosedFilter" class="produto">
+                      
+                            <div ng-hide="store.price < 0" class="block"> 
 
-                    </br><hr></br>
-                        <div ng-hide="store.price < 0"> 
+                                <div class="img-prod">
+                                    <img src="{{store.image}}">
+                                </div>
+                                <div class="desc-prod">
+                                    <span>{{store.store}} - {{store.description}}</span></br>
+                                    <img src="img/{{'star'+store.star}}.png">
+                                </div>
+                                <div class="preco-prod">
+                                    <strong class="title">Preço:</strong>
+                                    <p>{{store.price | currency: 'R$'}}</p>
+                                </div>
+                                <div class="botao-prod">
+                                    <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
+                                    <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Excluir</button>
+                                </div>
+                            </div><br/><br/><br/><br/><br/>
+                            
+                        </div><br/>
 
-                        <div class="img-prod">
-                            <img src="{{store.image}}">
-                        </div>
-                        <div class="desc-prod">
-                            <p>{{store.store}} <!-- - {{store.description}}--></p>
-                            <img src="img/{{'star'+store.star}}.png">
-                        </div>
-                        <div class="preco-prod">
-                            <p>{{store.price | currency: 'R$'}}</p>
-                        </div>
-                        <div class="botao-prod">
-                            <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
-                            <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Excluir</button>
-                        </div></br>
-                        </div>
-                        
-                    </div>
-
-                    </br></br></br></br></br>
                     
                 </div>
 
