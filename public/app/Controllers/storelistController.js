@@ -1,6 +1,9 @@
 app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
-
-    $scope.choosedFilter = '';
+    $scope.pageSize = 4;
+    $scope.currentPage = 0;
+   
+    
+    $scope.choosedFilter = 'price';
     
     $scope.filters = [
         {name: "Menor Preco", value: "price"},

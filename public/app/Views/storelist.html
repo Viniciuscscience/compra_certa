@@ -6,11 +6,11 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input ng-model="productname" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
+                    <input ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
                 </div>
-                <button ng-click="searchproduct(productname)" type="submit" class="btn btn-warning">Pesquisar</button>
+                <button ng-click="searchproduct(search.name)" type="submit" class="btn btn-warning">Pesquisar</button>
             </form>
-            
+
         </div>
     </div>
 </nav>
@@ -22,7 +22,7 @@
                 <div class="panel-heading">Ultimas pesquisas </div>
                 <div class="panel-body">
                     <div ng-repeat="pname in productsinCookies">
-                        {{pname}}</br><hr>
+                        <a ng-click="searchproduct(pname)">{{pname}}</a></br><hr>
                     </div>
                 </div>
             </div>
@@ -35,6 +35,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">Resultados para "{{globalname}}" 
+                    <input ng-model="storefilter.name" type="text"  placeholder="Filtrar Lojas" >
                     <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters" class="selecao">
                         <option value="">Ordenar por:</option>
                     </select>
@@ -46,31 +47,41 @@
                         1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
                         2 - Não foi encontrado nenhum produto com este nome.</br>
                     </div>
-                    <div ng-repeat="store in storelist | orderBy: choosedFilter" class="produto">
+         <!-- WITH PAGINATION           <button ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1">
+                        Previous
+                    </button>
+                    {{currentPage + 1}}/{{numberOfPages()}}
+                    <button ng-disabled="currentPage >= storelist.length / pageSize - 1" ng-click="currentPage = currentPage + 1">
+                        Next
+                    </button> 
+         WITH PAGINATION   <div  ng-if="!isworking" ng-repeat="store in storelist |  filter: storefilter.name | orderBy: choosedFilter | startFrom:currentPage * pageSize | limitTo:pageSize" class="produto"> -->    
 
-                    </br><hr></br>
+        <!-- WITHOUT PAGINATION -->
+                    <div  ng-if="!isworking" ng-repeat="store in storelist |  filter: storefilter.name | orderBy: choosedFilter " class="produto">
+
+                        </br><hr></br>
                         <div ng-hide="store.price < 0"> 
 
-                        <div class="img-prod">
-                            <img src="{{store.image}}">
+                            <div class="img-prod">
+                                <img src="{{store.image}}">
+                            </div>
+                            <div class="desc-prod">
+                                <p>{{store.store}} <!-- - {{store.description}}--></p>
+                                <img src="img/{{'star' + store.star}}.png">
+                            </div>
+                            <div class="preco-prod">
+                                <p>{{store.price| currency: 'R$'}}</p>
+                            </div>
+                            <div class="botao-prod">
+                                <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
+                                <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Excluir</button>
+                            </div></br>
                         </div>
-                        <div class="desc-prod">
-                            <p>{{store.store}} <!-- - {{store.description}}--></p>
-                            <img src="img/{{'star'+store.star}}.png">
-                        </div>
-                        <div class="preco-prod">
-                            <p>{{store.price | currency: 'R$'}}</p>
-                        </div>
-                        <div class="botao-prod">
-                            <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
-                            <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Excluir</button>
-                        </div></br>
-                        </div>
-                        
+
                     </div>
 
                     </br></br></br></br></br>
-                    
+
                 </div>
 
 
@@ -78,3 +89,5 @@
         </div>
     </div>
 </div>
+
+

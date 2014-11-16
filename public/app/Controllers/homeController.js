@@ -1,11 +1,13 @@
 app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $cookieStore) {
-    $scope.productname = "";
+    $rootScope.search = {name:""};
+    $rootScope.storefilter = {name:""};
     $rootScope.searchproduct = function (pname) {
         $rootScope.globalname = pname;
         $rootScope.storelist = [];
+        $rootScope.storefilter.name = "";
         $rootScope.isworking = true;
         var thereIsCookie = false;
-        console.log($rootScope.productname);
+
         $rootScope.productsinCookies = $cookieStore.get('researched_compracerta');
         
         if ($rootScope.productsinCookies == undefined)
@@ -28,7 +30,11 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
         produto.getStoreList(pname).then(function (slist) {
             $rootScope.storelist = slist.data
             $rootScope.isworking = false;
+            $rootScope.search.name = "";
+        }, function(error){
+             $rootScope.search.name = "Um erro Ocorreu";
         });
+       
         $location.path("/lojas");
     };
 
