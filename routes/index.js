@@ -34,15 +34,16 @@ router.get('/produto/:name', function (req, res) {
                                 var _star = _starfull + _starhalf / 2;
                                 var _description = $(this).children('.description').first().text();
                                 var _link = $(this).children('.actions').children('.red').attr('href');
-                                store_list.push({
-                                    store: _store,
-                                    price: _price,
-                                    link: _link,
-                                    image: _image,
-                                    description: _description,
-                                    star: _star
-                                });
-
+                                if(_store !== undefined){
+                                    store_list.push({
+                                        store: _store,
+                                        price: _price,
+                                        link: _link,
+                                        image: _image,
+                                        description: _description,
+                                        star: _star
+                                    });
+                                }
                             }
                         );
                         res.json(store_list);
