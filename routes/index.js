@@ -9,15 +9,12 @@ router.get('/produto/:name', function (req, res) {
     var store_list = [];
 
 
-    var url = format('http://www.buscape.com.br/proc_unico?id=77&kw=' + product);
+    var url = format('http://buscape.com.br/cprocura/' + product + '.html');
 
 
     request(url, function (err, response, body) {
         if (!err && response.statusCode == 200) {
-
-
             var $ = cheerio.load(body);
-
             var first_product = $(".bp-product-list .product").first().children('.details').children('.description').children('a').attr('href');
             if (first_product == undefined)
                 first_product = "none";
