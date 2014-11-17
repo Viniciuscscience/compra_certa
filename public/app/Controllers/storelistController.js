@@ -1,7 +1,9 @@
 app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     $scope.pageSize = 4;
     $scope.currentPage = 0;
-   
+    $scope.numberOfPages=function(){
+        return Math.ceil($rootScope.storelist.length/$scope.pageSize);                
+    };
     
     $scope.choosedFilter = 'price';
     
