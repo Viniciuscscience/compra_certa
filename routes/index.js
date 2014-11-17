@@ -37,7 +37,7 @@ router.get('/produto/:name', function (req, res) {
                                         price: _price,
                                         link: _link,
                                         image: _image,
-                                        description: _description,
+                                        description: _description.substr(0,_description.length-8),
                                         star: _star
                                     });
                                 }
