@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="price-prod">
                                     <strong class="title">Preço:</strong>
-                                    <p>{{store.price }}</p>
+                                    <p>{{store.price | currency: 'R$'}}</p>
                                 </div>
                                 <div class="button-prod">
                                     <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
