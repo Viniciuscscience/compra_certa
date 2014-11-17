@@ -5,10 +5,10 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
         return Math.ceil($rootScope.storelist.length/$scope.pageSize);                
     };
     
-    $scope.choosedFilter = 'price';
+    $scope.choosedFilter = '';
     
     $scope.filters = [
-        {name: "Menor Preco", value: "price"},
+        {name: "Menor Preco", value: ""},
         {name: "Maior Preco", value: "-price"},
         {name: "Alfabetica", value: "store"},
         {name: "Maior Avaliacao", value: "-star"},

@@ -1,6 +1,7 @@
 app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $cookieStore) {
     $rootScope.search = {name:""};
     $rootScope.storefilter = {name:""};
+    
     $rootScope.searchproduct = function (pname) {
         $rootScope.globalname = pname;
         $rootScope.storelist = [];
@@ -31,9 +32,14 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
             $rootScope.storelist = slist.data
             $rootScope.isworking = false;
             $rootScope.search.name = "";
+            
+            $rootScope.storelist.sort(function(a,b){
+                return a.price > b.price;
+            });
         }, function(error){
              $rootScope.search.name = "Um erro Ocorreu";
         });
+       
        
         $location.path("/lojas");
     };
