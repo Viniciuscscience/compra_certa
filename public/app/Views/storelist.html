@@ -34,7 +34,7 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Resultados para "{{globalname}}" 
+                <div class="panel-heading">Resultados para "{{globalname | limitTo: 8}}" 
                     <label>Filtro:</label><input ng-model="storefilter.name" type="text"  placeholder="Filtrar Lojas" class="select-filter">
                     <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters" class="select">
                         <option value="">Ordenar por:</option>
@@ -50,7 +50,7 @@
                       
                         <!-- WITHOUT PAGINATION 
                         <div ng-repeat="store in storelist | orderBy: choosedFilter | filter: storefilter.name" class="product">-->
-                        <div   ng-if="!isworking" ng-repeat="store in storelist | orderBy: choosedFilter | filter: storefilter.name | startFrom:currentPage * pageSize | limitTo:pageSize" class="product">     
+                        <div   ng-if="!isworking" ng-repeat="store in storelist | orderBy: choosedFilter | filter: storefilter.name " class="product">     
                             <div ng-hide="store.price < 0" class="block"> 
 
                                 <div class="img-prod">
