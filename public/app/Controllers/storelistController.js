@@ -35,49 +35,55 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     		$rootScope.storelist.splice(index,1);
     	 }
     };
-    /* remember to change this sorting algorithm to use javascript's .sort*/
-    $scope.sort = function (list,isAscending) {
-    	
-    	var  lowerThan    =  [];
-    	var  greaterThan  =  [];
-    	var  sortedArray  =  [];
-    	var  pivot        =  list[0];
-    	var  j            =  0;
-    	var  i            =  0;
-    	
-    	if(list.length == 0 )
-    	return [];
-    	for( i = 1; i < list.length; i++) {
-    		if( list[i].price <= pivot.price) {
-    			lowerThan[j++] = list[i];
-    		}
-    	}
-    	j = 0;
-    	for( i = 1; i < list.length; i++) {
-    		if( list[i].price > pivot.price) {
-    			greaterThan[j++] = list[i];
-    		}
-    	}
-    	if(isAscending) {
-    		return sortedArray.concat($scope.sort(lowerThan,isAscending ), pivot, $scope.sort(greaterThan,isAscending) );
-    	}	    
-        else {
-           return sortedArray.concat($scope.sort(greaterThan,isAscending) ,pivot, $scope.sort(lowerThan,isAscending) );	
-        }   
-    };
-    
+   
+     
     $scope.$watch('choosedFilter', function() {
     	var i;
     	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
     		console.log("here    " + 'choosedFilter');
     		if($scope.choosedFilter == "price") {
-    			$rootScope.storelist = $scope.sort($rootScope.storelist, true);
+    			$rootScope.storelist.sort(function (a, b) {
+    				return (a.price - b.price);
+    			});	
     	    	console.log("Ordenando em ordem cresente");    
     		}
-        	else {
-        		$rootScope.storelist = $scope.sort($rootScope.storelist, false);
+        	else if($scope.choosedFilter == "-price") {
+        		$rootScope.storelist.sort(function (a, b) {
+    				return (b.price - a.price);
+    			});	
+        		
             	console.log("Ordenando em ordem decresente");  
         	}
+    	    else if($scope.choosedFilter == "store") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    			 if(a.store.toLowerCase() < b.store.toLowerCase() ) {
+    			 	return -1;
+    			 }
+    			 else if(a.store.toLowerCase() > b.store.toLowerCase() ) { 
+    			 	return 1;
+    			 }
+    			 else {
+    			 	return 0;
+    			 }
+    			});
+                console.log("a.store[0] is :  " + $rootScope.storelist[0].store[0] + " /n b.store[0] is " + $rootScope.storelist[1].store[0])
+                console.log("Ordenando por ordem alfabetica");      	    
+    	    }
+    	    else if($scope.choosedFilter == "star") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    				return (a.star - b.star);
+    			});
+                console.log("Ordenando em ordem crescente de avaliação");      	    
+    	    }
+    	    else if($scope.choosedFilter == "-star") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    				return (b.star - a.star);
+    			});
+                console.log("Ordenando em ordem decrescente de avaliação");      	    
+    	    }
+    	    else { 
+    	    	console.log("ERROR:filtro não identificado");
+    	    }
     	    for( i = 0; i < $rootScope.storelist.length; i++) {
     		    	console.log("price : " +  $rootScope.storelist[i].price + "\n");
     		    }
