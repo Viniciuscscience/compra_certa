@@ -70,7 +70,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     	var i;
     	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
     		console.log("here    " + 'choosedFilter');
-    		if('choosedFilter' == "price") {
+    		if($scope.choosedFilter == "price") {
     			$rootScope.storelist = $scope.sort($rootScope.storelist, true);
     	    	console.log("Ordenando em ordem cresente");    
     		}
