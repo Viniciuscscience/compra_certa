@@ -35,7 +35,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     		$rootScope.storelist.splice(index,1);
     	 }
     };
-    /* remember to change this sorting algorithm to use javascript .sort*/
+    /* remember to change this sorting algorithm to use javascript's .sort*/
     $scope.sort = function (list,isAscending) {
     	
     	var  lowerThan    =  [];
