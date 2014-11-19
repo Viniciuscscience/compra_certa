@@ -35,7 +35,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     		$rootScope.storelist.splice(index,1);
     	 }
     };
-    
+    /* remember to change this sorting algorithm to use javascript .sort*/
     $scope.sort = function (list,isAscending) {
     	
     	var  lowerThan    =  [];
@@ -46,7 +46,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     	var  i            =  0;
     	
     	if(list.length == 0 )
-    	   return [];
+    	return [];
     	for( i = 1; i < list.length; i++) {
     		if( list[i].price <= pivot.price) {
     			lowerThan[j++] = list[i];
