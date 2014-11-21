@@ -93,5 +93,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     $scope.buyProduct = function (website) {
         $window.open(website);
     };
+    
+
 
 });
