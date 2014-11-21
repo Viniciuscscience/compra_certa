@@ -8,7 +8,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     $scope.choosedFilter = '';
     
     $scope.filters = [
-        {name: "Menor Preco", value: ""},
+        {name: "Menor Preco", value: "price"},
         {name: "Maior Preco", value: "-price"},
         {name: "Alfabetica", value: "store"},
         {name: "Maior Avaliacao", value: "-star"},
@@ -35,9 +35,65 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
     		$rootScope.storelist.splice(index,1);
     	 }
     };
+   
+     
+    $scope.$watch('choosedFilter', function() {
+    	var i;
+    	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
+    		console.log("here    " + 'choosedFilter');
+    		if($scope.choosedFilter == "price") {
+    			$rootScope.storelist.sort(function (a, b) {
+    				return (a.price - b.price);
+    			});	
+    	    	console.log("Ordenando em ordem cresente");    
+    		}
+        	else if($scope.choosedFilter == "-price") {
+        		$rootScope.storelist.sort(function (a, b) {
+    				return (b.price - a.price);
+    			});	
+        		
+            	console.log("Ordenando em ordem decresente");  
+        	}
+    	    else if($scope.choosedFilter == "store") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    			 if(a.store.toLowerCase() < b.store.toLowerCase() ) {
+    			 	return -1;
+    			 }
+    			 else if(a.store.toLowerCase() > b.store.toLowerCase() ) { 
+    			 	return 1;
+    			 }
+    			 else {
+    			 	return 0;
+    			 }
+    			});
+                console.log("a.store[0] is :  " + $rootScope.storelist[0].store[0] + " /n b.store[0] is " + $rootScope.storelist[1].store[0])
+                console.log("Ordenando por ordem alfabetica");      	    
+    	    }
+    	    else if($scope.choosedFilter == "star") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    				return (a.star - b.star);
+    			});
+                console.log("Ordenando em ordem crescente de avaliação");      	    
+    	    }
+    	    else if($scope.choosedFilter == "-star") {
+    	    	$rootScope.storelist.sort(function (a, b) {
+    				return (b.star - a.star);
+    			});
+                console.log("Ordenando em ordem decrescente de avaliação");      	    
+    	    }
+    	    else { 
+    	    	console.log("ERROR:filtro não identificado");
+    	    }
+    	    for( i = 0; i < $rootScope.storelist.length; i++) {
+    		    	console.log("price : " +  $rootScope.storelist[i].price + "\n");
+    		    }
+    	}
+    });
     
     $scope.buyProduct = function (website) {
         $window.open(website);
     };
+    
+
 
 });
