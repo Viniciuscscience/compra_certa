@@ -1,0 +1,91 @@
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">          
+        <div class="navbar-header">
+            <a href="#/home" class="navbar-brand">Compra Certa</a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <form role="search" class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
+                </div>
+                <button ng-click="searchproduct(search.name)" type="submit" class="btn btn-warning">Pesquisar</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-md-4">
+        <div class="top">
+            <div class="panel panel-default">
+                <div class="panel-heading">Ultimas pesquisas </div>
+                <div class="panel-body">
+                    <div ng-repeat="pname in productsinCookies">
+                        <a ng-click="searchproduct(pname)" class="cursor-pointer" >{{pname}}</a></br><hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="top">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Resultados para "{{globalname | limitTo: 8}}" 
+                    <label>Filtro:</label><input ng-model="storefilter.name" type="text"  placeholder="Filtrar Lojas" class="select-filter">
+                    <select ng-model="choosedFilter" ng-options="filter.value as filter.name for filter in filters" class="select">
+                        <option value="">Ordenar por:</option>
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <div ng-show="isworking" class="img-center"><img src="img/ajax-loader.gif"></div>
+                    <div ng-hide="isworking || storelist">
+                        Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
+                        1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
+                        2 - Não foi encontrado nenhum produto com este nome.</br>
+                    </div>
+                      
+                        <!-- WITHOUT PAGINATION 
+                        <div ng-repeat="store in storelist | orderBy: choosedFilter | filter: storefilter.name" class="product">-->
+                        <div ng-if="!isworking" ng-repeat="store in storelist" class="product">
+                            <div ng-hide="store.price < 0" class="block"> 
+
+                                <div class="img-prod">
+                                    <img src="{{store.image}}">
+                                </div>
+                                <div class="desc-prod">
+                                    <span>{{store.store}} - {{store.description}}</span></br>
+                                    <img src="img/{{'star'+store.star}}.png">
+                                </div>
+                                <div class="price-prod">
+                                    <strong class="title">Preço:</strong>
+                                    <p>{{store.price | currency: 'R$'}}</p>
+                                </div>
+                                <div class="button-prod">
+                                    <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
+                                    <button ng-click="deleteProduct(store.store, store.price, store.description)" type="button" class="btn btn-warning btn-xs">Excluir</button>
+                                </div>
+                            </div><br/><br/><br/><br/><br/>
+                            
+                        </div><br/>
+                        <!-- WITH PAGINATION  --> 
+                        <div ng-show="!isworking" class="pag">      
+                            <button ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1" class="btn">
+                                Previous
+                            </button>
+                            {{currentPage + 1}}/{{numberOfPages()}}
+                            <button ng-disabled="currentPage >= storelist.length / pageSize - 1" ng-click="currentPage = currentPage + 1" class="btn">
+                                Next
+                            </button> 
+                            <!-- WITH PAGINATION --> 
+                        </div> 
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

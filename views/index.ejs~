@@ -33,7 +33,7 @@
         <script src="app/Controllers/homeController.js"></script>
         <script src="app/Controllers/storelistController.js"></script>
         <script src="app/APIs/compracerta_api.js"></script>
-        <script src="app/Directives/startFrom.js"></script>
+        <script src="app/directives/startFrom.js"></script>
         <script src="app/Config/routeConfiguration.js"></script>
 
     </body>
