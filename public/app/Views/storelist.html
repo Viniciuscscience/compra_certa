@@ -54,15 +54,15 @@
                             <div ng-hide="store.price < 0" class="block"> 
 
                                 <div class="img-prod">
-                                    <img src="{{store.image}}">
+                                    <a href="{{store.link}}" target="_blank"><img src="{{store.image}}"></a>
                                 </div>
                                 <div class="desc-prod">
-                                    <span>{{store.store}} - {{store.description}}</span></br>
+                                    <a href="{{store.link}}" target="_blank"><span>{{store.store}} - {{store.description}}</span></a></br>
                                     <img src="img/{{'star'+store.star}}.png">
                                 </div>
                                 <div class="price-prod">
                                     <strong class="title">Preço:</strong>
-                                    <p>{{store.price | currency: 'R$'}}</p>
+                                    <a href="{{store.link}}" target="_blank"><p>{{store.price | currency: 'R$'}}</p></a>
                                 </div>
                                 <div class="button-prod">
                                     <button ng-click="buyProduct(store.link)"  type="button" class="btn btn-warning btn-xs">Ir a loja</button>
