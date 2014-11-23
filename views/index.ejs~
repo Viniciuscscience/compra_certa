@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="myApp" lang="pt-BR">
+<html ng-app="myApp" >
     <head>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
@@ -33,7 +33,7 @@
         <script src="app/Controllers/homeController.js"></script>
         <script src="app/Controllers/storelistController.js"></script>
         <script src="app/APIs/compracerta_api.js"></script>
-        <script src="app/Directives/startFrom.js"></script>
+        <script src="app/directives/startFrom.js"></script>
         <script src="app/Config/routeConfiguration.js"></script>
 
     </body>
