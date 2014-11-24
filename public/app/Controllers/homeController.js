@@ -31,6 +31,11 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
         }
 
         produto.getStoreList(pname).then(function (slist) {
+            slist.data.sort(function (a, b) {
+            	return (a.price - b.price);
+            });	
+            $rootScope.costliest = slist.data[slist.data.length- 1].price;
+            $rootScope.cheapest  = slist.data[0].price;
             $rootScope.storelist = slist.data
             $rootScope.isworking = false;
             $rootScope.search.name = "";
@@ -38,12 +43,14 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
                  $rootScope.search.name = $rootScope.globalname;
             }
             
-            $rootScope.storelist.sort(function(a,b){
-                return a.price > b.price;
-            });
+   
         }, function(error){
              $rootScope.search.name = "Um erro Ocorreu";
         });
+   //   $rootScope.storelist.sort(function (a, b) {
+   // 				return (a.price - b.price);
+   // 			});	
+      
         
       $location.path("/lojas");
     };
