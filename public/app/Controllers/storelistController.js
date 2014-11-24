@@ -15,8 +15,9 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         {name: "Menor Avaliacao", value: "star"}
     ];
     
-    if ($rootScope.globalname=="")
-        $location.path("/home");
+   if(typeof $rootScope.globalname=="undefined"){
+            $location.path("/home");
+        }
     
     $scope.deleteStore = function (name) {
         $rootScope.storelist.forEach(function (_store) {

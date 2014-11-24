@@ -11,6 +11,8 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
 
         $rootScope.productsinCookies = $cookieStore.get('researched_compracerta');
         
+        
+            
         if ($rootScope.productsinCookies == undefined)
             $rootScope.productsinCookies = [];
 
