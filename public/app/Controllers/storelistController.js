@@ -1,4 +1,4 @@
-app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
+app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location) {
     $scope.pageSize = 4;
     $scope.currentPage = 0;
     $scope.numberOfPages=function(){
@@ -14,6 +14,9 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window) {
         {name: "Maior Avaliacao", value: "-star"},
         {name: "Menor Avaliacao", value: "star"}
     ];
+    
+    if ($rootScope.globalname=="")
+        $location.path("/home");
     
     $scope.deleteStore = function (name) {
         $rootScope.storelist.forEach(function (_store) {
