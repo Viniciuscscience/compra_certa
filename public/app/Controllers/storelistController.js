@@ -5,7 +5,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         return Math.ceil($rootScope.storelist.length/$scope.pageSize);                
     };
     
-    $scope.choosedFilter = '';
+    $scope.x ={choosedFilter: ''};
     
     $scope.filters = [
         {name: "Menor Preco", value: "price"},
@@ -18,6 +18,8 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
    if(typeof $rootScope.globalname=="undefined"){
             $location.path("/home");
         }
+        
+    
     
     $scope.deleteStore = function (name) {
         $rootScope.storelist.forEach(function (_store) {
@@ -41,24 +43,24 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     };
    
      
-    $scope.$watch('choosedFilter', function() {
+    $scope.$watch('x.choosedFilter', function() {
     	var i;
     	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
     		console.log("here    " + 'choosedFilter');
-    		if($scope.choosedFilter == "price") {
+    		if($scope.x.choosedFilter == "price") {
     			$rootScope.storelist.sort(function (a, b) {
     				return (a.price - b.price);
     			});	
     	    	console.log("Ordenando em ordem cresente");    
     		}
-        	else if($scope.choosedFilter == "-price") {
+        	else if($scope.x.choosedFilter == "-price") {
         		$rootScope.storelist.sort(function (a, b) {
     				return (b.price - a.price);
     			});	
         		
             	console.log("Ordenando em ordem decresente");  
         	}
-    	    else if($scope.choosedFilter == "store") {
+    	    else if($scope.x.choosedFilter == "store") {
     	    	$rootScope.storelist.sort(function (a, b) {
     			 if(a.store.toLowerCase() < b.store.toLowerCase() ) {
     			 	return -1;
@@ -73,13 +75,13 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
                 console.log("a.store[0] is :  " + $rootScope.storelist[0].store[0] + " /n b.store[0] is " + $rootScope.storelist[1].store[0])
                 console.log("Ordenando por ordem alfabetica");      	    
     	    }
-    	    else if($scope.choosedFilter == "star") {
+    	    else if($scope.x.choosedFilter == "star") {
     	    	$rootScope.storelist.sort(function (a, b) {
     				return (a.star - b.star);
     			});
                 console.log("Ordenando em ordem crescente de avaliação");      	    
     	    }
-    	    else if($scope.choosedFilter == "-star") {
+    	    else if($scope.x.choosedFilter == "-star") {
     	    	$rootScope.storelist.sort(function (a, b) {
     				return (b.star - a.star);
     			});
@@ -99,5 +101,5 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     };
     
 
-
+     
 });
