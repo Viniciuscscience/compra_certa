@@ -1,0 +1,4 @@
+in html storlist: 
+<div> O produto "{{globalname}}" varia de {{cheapest}} R$  a  {{costliest}} R$ </br> </div> 
+
+in storelist controller
