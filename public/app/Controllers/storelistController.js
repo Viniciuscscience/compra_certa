@@ -14,7 +14,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         {name: "Maior Avaliacao", value: "-star"},
         {name: "Menor Avaliacao", value: "star"}
     ];
-    
+                  // Erika                            //       Victor                           Victor
    if((typeof $rootScope.globalname=="undefined") || !($rootScope.globalname) || ($rootScope.globalname == "Um erro Ocorreu")){
             $location.path("/home");
         }
