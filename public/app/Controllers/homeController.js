@@ -26,7 +26,8 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
             }
         });
         if (!thereIsCookie) {
-            $rootScope.productsinCookies.push(pname);
+            if (pname)
+                $rootScope.productsinCookies.push(pname);
             $cookieStore.put('researched_compracerta', $rootScope.productsinCookies);
         }
 
@@ -44,8 +45,9 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
         }, function(error){
              $rootScope.search.name = "Um erro Ocorreu";
         });
-        
+      
       $location.path("/lojas");
+
     };
 
 
