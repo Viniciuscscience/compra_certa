@@ -30,6 +30,7 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
             $cookieStore.put('researched_compracerta', $rootScope.productsinCookies);
         }
 
+
         produto.getStoreList(pname).then(function (slist) {
 
             slist.data.sort(function (a, b) {
@@ -41,6 +42,7 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
 
             $rootScope.isworking = false;
             $rootScope.search.name = "";
+            // Funcionalidade 5 implementada
             if ($rootScope.storelist.length < 1)
                 $rootScope.search.name = $rootScope.globalname;
             
