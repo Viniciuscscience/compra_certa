@@ -41,6 +41,8 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
 
             $rootScope.isworking = false;
             $rootScope.search.name = "";
+            if ($rootScope.storelist.length < 1)
+                $rootScope.search.name = $rootScope.globalname;
             
             
    
