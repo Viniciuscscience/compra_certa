@@ -7,8 +7,7 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input ng-show="storelist" ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
-                    <input ng-hide="storelist" ng-model="search.name" type="text" style="width:700px"  class="form-control" required>
+                   <input ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
                 </div>
               
                 <button ng-click="searchproduct(search.name)" type="submit" class="btn btn-warning">Pesquisar</button>

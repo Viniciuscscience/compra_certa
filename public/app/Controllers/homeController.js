@@ -31,12 +31,13 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
         }
 
         produto.getStoreList(pname).then(function (slist) {
-            $rootScope.storelist = slist.data
+            $rootScope.storelist = slist.data;
+            $rootScope.storelist.sort(function(a,b){
+                return a.price.localeCompare(b.price);
+            });
             $rootScope.isworking = false;
             $rootScope.search.name = "";
-            if ($rootScope.storelist.length < 1){
-                 $rootScope.search.name = $rootScope.globalname;
-            }
+            
             
             $rootScope.storelist.sort(function(a,b){
                 return a.price > b.price;
