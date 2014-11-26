@@ -44,7 +44,7 @@
                 <div class="panel-body">
                     <div ng-show="isworking" class="img-center"><img src="img/ajax-loader.gif"></div>
                     <div ng-hide="isworking || storelist">
-                        Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
+                        Ocorreu uma das duas situações abaixo. Favor tentar novamente.</br>
                         1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
                         2 - Não foi encontrado nenhum produto com este nome.</br>
                     </div>
@@ -73,7 +73,7 @@
                             
                         </div><br/>
                         <!-- WITH PAGINATION  --> 
-                        <div ng-show="!isworking" class="pag">      
+                        <div ng-show="!isworking && storelist" class="pag">      
                             <button ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1" class="btn">
                                 Previous
                             </button>
