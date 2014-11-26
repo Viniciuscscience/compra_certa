@@ -3,6 +3,13 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
     $rootScope.storefilter = {name:""};
     
     $rootScope.searchproduct = function (pname) {
+        //victor, here I'm doing the regex for a string with only spaces
+        for(var i= 0; i < pname.length && pname[i]==' '; i++);
+        if(i===pname.length){
+            $rootScope.search.name="";
+            return false;
+        }
+            
         $rootScope.globalname = pname;
         $rootScope.storelist = [];
         $rootScope.storefilter.name = "";
@@ -36,8 +43,11 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
             slist.data.sort(function (a, b) {
             	return (a.price - b.price);
             });	
-            $rootScope.costliest = slist.data[slist.data.length- 1].price;
-            $rootScope.cheapest  = slist.data[0].price;
+            //mateus, if the list is empty there will be no first or  last element
+            if(slist.length > 0){
+                $rootScope.costliest = slist.data[slist.data.length- 1].price;
+                $rootScope.cheapest  = slist.data[0].price;
+            }
             $rootScope.storelist = slist.data
 
             $rootScope.isworking = false;
@@ -46,7 +56,9 @@ app.controller('homeCtrl', function ($scope, produto, $location, $rootScope, $co
             
    
         }, function(error){
-             $rootScope.search.name = "Um erro Ocorreu";
+            //dear lord =( I cant believe that it's happening
+            $rootScope.isworking = false;
+            console.log(error);
         });
 
       $location.path("/lojas");

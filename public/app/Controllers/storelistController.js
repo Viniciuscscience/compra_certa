@@ -17,6 +17,12 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         {name: "Maior Avaliacao", value: "-star"},
         {name: "Menor Avaliacao", value: "star"}
     ];
+    
+    //victor, there is a search function on both files, home.html n storelist.html,
+    // so u should not check the last statement here, cause this code will run 
+    // only once on the first load. Only functions runs more than once. The message "Um erro Ocorreu"
+    // is not for that, u should really do a empty string check while search the string.
+    //
                   // Erika                            //       Victor                           Victor
    if((typeof $rootScope.globalname=="undefined") || !($rootScope.globalname) || ($rootScope.globalname == "Um erro Ocorreu")){
             $location.path("/home");
