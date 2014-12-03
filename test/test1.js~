@@ -1,0 +1,11 @@
+var assert = require('assert');
+
+var homeC = require('../public/app/Controllers/storelistController.js');
+
+describe('Voltar para a home, se digitado link incorreto', function(){
+	it("Path deve ser /home",function(){
+		if(typeof homeC.$rootScope.globalname == undefined){
+			assert.equal("/home",homeC.$location.path);
+		}
+	});
+});

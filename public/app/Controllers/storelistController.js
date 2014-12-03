@@ -41,7 +41,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     };
    
      
-    $scope.$watch('choosedFilter', function() {
+    $scope.$watch('choosedFilter', function () {
     	var i;
     	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
     		console.log("here    " + 'choosedFilter');
@@ -98,6 +98,4 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         $window.open(website);
     };
     
-
-
 });

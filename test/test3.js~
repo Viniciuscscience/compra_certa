@@ -1,0 +1,3 @@
+var assert = require('assert');
+
+var hc = require('../public/app/Controllers/homeController.js');

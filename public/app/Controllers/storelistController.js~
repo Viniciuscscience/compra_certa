@@ -14,18 +14,18 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         {name: "Maior Avaliacao", value: "-star"},
         {name: "Menor Avaliacao", value: "star"}
     ];
-
-    if(typeof $rootScope.globalname == "undefined")
-	$location.path("/home");
-	    
+    
+   if(typeof $rootScope.globalname=="undefined"){
+            $location.path("/home");
+        }
+    
     $scope.deleteStore = function (name) {
         $rootScope.storelist.forEach(function (_store) {
             if (_store.store == name )
                 _store.price = -1;
         });
     };
-
-
+    
     $scope.deleteProduct = function (name, price, descr) {
     	 var index = 0;
     	 for ( index = 0; index < $rootScope.storelist.length; index++) {
@@ -41,7 +41,7 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     };
    
      
-    $scope.$watch('choosedFilter', function() {
+    $scope.$watch('choosedFilter', function s() {
     	var i;
     	if(!(typeof $rootScope.storelist[0] === 'undefined') ){
     		console.log("here    " + 'choosedFilter');
@@ -98,6 +98,4 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
         $window.open(website);
     };
     
-
-
 });
