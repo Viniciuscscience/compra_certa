@@ -52,6 +52,8 @@ router.get('/produto/:name', function (req, res) {
                 }
             )
             ;
+        } else{
+             res.json(store_list);
         }
 
     });

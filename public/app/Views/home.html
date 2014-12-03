@@ -4,10 +4,21 @@
 			<div class="search">
 				<form class="form-inline" role="form">
 					<div class="col-sm-12">
-		               	<input ng-model="search.name" class="form-control input-lg" type="text" style="width:650px" placeholder="Digite o nome do produto com marca ou modelo e clique em pesquisar" name="pesquisar" autofocus required/>
+		               	<input ng-model="search.name" class="form-control input-lg" type="text" style="width:650px" placeholder="Digite o nome do produto com marca ou modelo e clique em pesquisar" name="pesquisar" autofocus />
 		                <button ng-click="searchproduct(search.name)" type="submit" class="btn btn-warning btn-lg">Pesquisar</button>
 		           	</div>
 	           	</form>
 	        </div>
+
 	</div>
+	<div class="lala">
+		<div ng-show="error.hasError"  class="alert alert-danger" role="alert" >
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				<span class="sr-only">Error:</span>
+			  {{error.errorMessage}}
+			</div>
+			</div>
 </div>
+
+
+

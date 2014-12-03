@@ -7,7 +7,9 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                   <input ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" required>
+                    <!-- Funcionalidade 5 implementada -->
+                    <input ng-show="storelist" ng-model="search.name" type="text" style="width:700px" placeholder="{{globalname}}" class="form-control" autofocus />
+                    <input ng-hide="storelist" ng-model="search.name" type="text" style="width:700px"  class="form-control" autofocus />
                 </div>
               
                 <button ng-click="searchproduct(search.name)" type="submit" class="btn btn-warning">Pesquisar</button>
@@ -43,16 +45,29 @@
                     </select>
                 </div>
                 <div class="panel-body">
-                    <div ng-show="isworking" class="img-center"><img src="img/ajax-loader.gif"></div>
-                    <div ng-hide="isworking || storelist">
-                        Ocorreu uma das duas cituações abaixo. Favor tentar novamente.</br>
+                    <div ng-show=" !error.hasError && isworking" class="img-center "><img src="img/ajax-loader.gif"></div>
+                    <div ng-hide=" error.hasError || isworking || storelist.length > 0"  class="alert alert-danger" role="alert">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                        Ocorreu uma das duas situações abaixo. Favor tentar novamente.</br>
                         1 - Não foi encontrado nenhuma loja vendendo o produto citado.</br>
                         2 - Não foi encontrado nenhum produto com este nome.</br>
                     </div>
-                        <div> O produto "{{globalname}}" varia de {{cheapest}} R$  a  {{costliest}} R$ </br> </div> 
+
+
+                <div ng-show="error.hasError"  class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+              {{error.errorMessage}}
+                         </div>
+            
+
+
+                    <!-- Mateus, if the list is empty, so u should not show a range for the price-->
+                        <div ng-show="storelist.length > 0 && !isworking && !error.hasError"> O produto "{{globalname}}" varia de {{cheapest}} R$  a  {{costliest}} R$ </br> </div> 
                         <!-- WITHOUT PAGINATION 
                         <div ng-repeat="store in storelist | orderBy: choosedFilter | filter: storefilter.name" class="product">-->
-                        <div   ng-if="!isworking" ng-repeat="store in storelist  | filter: storefilter.name | startFrom: pageSize*currentPage | limitTo: pageSize"  class="product">     
+                        <div   ng-if="!isworking && !error.hasError" ng-repeat="store in storelist  | filter: storefilter.name | startFrom: pageSize*currentPage | limitTo: pageSize"  class="product">     
                             <div ng-hide="store.price < 0" class="block"> 
 
                                 <div class="img-prod">
@@ -74,7 +89,7 @@
                             
                         </div><br/>
                         <!-- WITH PAGINATION  --> 
-                        <div ng-show="!isworking" class="pag">      
+                        <div ng-show="!isworking && storelist.length > 0 && !error.hasError" class="pag">      
                             <button ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1" class="btn">
                                 Previous
                             </button>
