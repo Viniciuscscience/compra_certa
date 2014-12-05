@@ -7,8 +7,9 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     
     $scope.x ={choosedFilter: 'price'};
     
-    $rootScope.cheapest   = "...";
-    $rootScope.costliest  = "...";
+    $rootScope.message    =  "varia de "; 
+    $rootScope.cheapest   =  "...";
+    $rootScope.costliest  =  "...";
     
     $scope.filters = [
         {name: "Menor Preco", value: "price"},
@@ -38,7 +39,8 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
     };
     
     $scope.deleteProduct = function (name, price, descr) {
-    	 var index = 0;
+    	 var index   = 0;
+    	 var arr_cpy;
     	 for ( index = 0; index < $rootScope.storelist.length; index++) {
          	if ( $rootScope.storelist[index].store == name && 
          	     $rootScope.storelist[index].price == price && 
@@ -47,6 +49,27 @@ app.controller('storelistCtrl', function ($scope, $rootScope, $window, $location
          	}
          }       
          if (index < $rootScope.storelist.length) {
+    		if( $rootScope.storelist[index].price == $rootScope.cheapest )  {
+    			console.log("Deleting cheapest product ");
+    			arr_cpy  = 	$rootScope.storelist.slice(0);
+    			arr_cpy.sort(function (a,b) {
+    				return (a.price - b.price);
+    			});
+    			if(arr_cpy.length > 1) {
+    				$rootScope.cheapest  =  arr_cpy[1].price;	
+    			}
+    		}
+    		else if ($rootScope.storelist[index].price == $rootScope.costliest) {
+    			console.log("Deleting costliest product ");
+    			arr_cpy  = 	$rootScope.storelist.slice(0);
+    			arr_cpy.sort(function (a,b) {
+    				return (b.price - a.price);
+    			});
+    			if(arr_cpy.length > 1) {
+    				$rootScope.costliest  =  arr_cpy[1].price;	
+    			}	
+    		
+    		}
     		$rootScope.storelist.splice(index,1);
     	 }
     };
