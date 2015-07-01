@@ -74,14 +74,14 @@ router.get('/loja/insinuante/produto/:name', function (req, res) {
     request(url, function (err, response, body) {
         if (!err && response.statusCode == 200) {
             var $ = cheerio.load(body);
-            
+
             var first_product =  $('.foto-produto').first().children('a').attr('href');
             console.log(first_product);
             if (first_product == undefined){
                 console.log(first_product);
                 first_product = "none";
             }
-                
+
             request(first_product, function (err2, response2, body2) {
                     if (!err2 && response2.statusCode == 200) {
                         var $ = cheerio.load(body2);
@@ -140,7 +140,7 @@ router.get('/loja/insinuante/produto/:name', function (req, res) {
                 console.log('oi3');
                  res.json(product_insinuante);
             }
-        
+
 
     });
 
