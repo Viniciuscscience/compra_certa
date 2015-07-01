@@ -12,3 +12,6 @@ app.factory("produto", ['$http', function ($http) {
     return obj;
 }
 ]);
+
+
+//teste
