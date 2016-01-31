@@ -21,7 +21,7 @@ router.get('/produto/:name', function (req, res) {
                 first_product = "none";
             request(first_product, function (err2, response2, body2) {
 
-                if (!err2 && response2.statusCode == 200) {
+                    if (!err2 && response2.statusCode == 200) {
                         var $ = cheerio.load(body2);
                         $(".offers-list__item").each(
                             function () {
@@ -32,7 +32,7 @@ router.get('/produto/:name', function (req, res) {
                                 //A PREGUICA EH MAIOR, MUITO CHATO FICAR REVIRANDO HTML
                                 //var _starfull = $(this).find('.ebit-more-info div.stars span.starfull').length;
                                 //var _starhalf = $(this).find('.ebit-more-info div.stars span.starhalf').length;
-                               // var _star = _starfull + _starhalf / 2;
+                                // var _star = _starfull + _starhalf / 2;
                                 var _star = 3;
                                 //var _description = $(this).children('.description').first().text();
                                 var _description = "Nao tive paciencia";
@@ -59,7 +59,7 @@ router.get('/produto/:name', function (req, res) {
             )
             ;
         } else{
-             res.json(store_list);
+            res.json(store_list);
         }
 
     });
@@ -138,9 +138,9 @@ router.get('/loja/insinuante/produto/:name', function (req, res) {
 
                 }
             );
-            } else{
-                 res.json(product_insinuante);
-            }
+        } else{
+            res.json(product_insinuante);
+        }
 
 
     });
